@@ -1,31 +1,12 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">MyBank</a>
+    <a class="navbar-brand" href="#">HCL Bench Management</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item active">
-                <a class="nav-link" href="javascript:void(0);" (click)="goToPolicy()">Policies
-                    <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);" (click)="goToPolicyTrends()">Policy Trend Analysis</a>
-            </li> -->
-            <li class="nav-item" *ngIf="userDetails && userDetails?.loginType == 'shopping' ">
-                <a href="javascript:void(0);" class="nav-link text-white" (click)="goToDashboard();">Dashboard
-                </a>
-            </li>
-        </ul>
-    </div>
+ 
     <form class="form-inline my-2 my-lg-0">
         <ul class="nav navbar-nav ml-md--auto float-right">
-            <li class="nav-item" *ngIf="userDetails && userDetails?.loginType == 'credit'">
-                <a class="nav-link" href="javascript:void(0);" tabindex="-1" aria-disabled="true"><strong
-                        class="text-success">Credit Card Number: </strong> <span
-                        class="text-white">{{userDetails?.creditCardId}}</span></a>
-            </li>
             <li class="dropdown" *ngIf="userDetails && userDetails?.customerName">
 
                 <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown"
@@ -36,8 +17,6 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a *ngIf="userDetails && userDetails?.loginType == 'shopping'" class="dropdown-item"
-                        href="javascript:void(0);" (click)="viewOrders()">Order History</a>
                     <a class="dropdown-item" href="javascript:void(0);" (click)="logout()">Logout</a>
                 </div>
 

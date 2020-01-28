@@ -5,25 +5,15 @@ import { AuthGuardService } from '../app/services/auth-guard.service';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import(`./components/register/register.module`).then(m => m.RegisterModule)
+    loadChildren: () => import(`./components/login/login.module`).then(m => m.LoginModule)
   },
   {
     path: 'login',
     loadChildren: () => import(`./components/login/login.module`).then(m => m.LoginModule)
   },
   {
-    path: 'search',
-    loadChildren: () => import(`./components/search/search.module`).then(m => m.SearchModule),
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'transaction',
-    loadChildren: () => import(`./components/transaction/transaction.module`).then(m => m.TransactionModule),
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'myorders',
-    loadChildren: () => import(`./components/myorders/myorders.module`).then(m => m.MyordersModule),
+    path: 'dashboard',
+    loadChildren: () => import(`./components/dashboard/dashboard.module`).then(m => m.DashboardModule),
     canActivate: [AuthGuardService]
   }
 ];
