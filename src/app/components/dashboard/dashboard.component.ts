@@ -10,14 +10,17 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  loader:boolean = false;
+
+  data: any;
+  loader: boolean = false;
   empList;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private policyService: PolicyService,
     private toastService: MessageService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+
   ) { }
 
   getBenchResources() {
@@ -37,6 +40,24 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.data = {
+      labels: ['A','B','C'],
+      datasets: [
+          {
+              data: [300, 50, 100],
+              backgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+              ],
+              hoverBackgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+              ]
+          }]    
+      };
+
     // tslint:disable-next-line: max-line-length
     this.elementRef.nativeElement.ownerDocument.body.style.background = 'linear-gradient(to right bottom, #cfcbc9 ,#ff6200,#ff6200,#cfcbc9) fixed center';
     /* Check whether login/not */
