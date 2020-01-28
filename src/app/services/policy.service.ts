@@ -8,13 +8,8 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class PolicyService {
   showAlert = {};
-  registrationAPI = 'http://10.117.189.62:8087/bank/cards';
-  loginAPI = 'http://10.117.189.62:8087/bank/customers/login';
-  searchAPI = 'http://10.117.189.62:8065/ecommerce/products';
-  myOrdersAPI = 'http://10.117.189.62:8065/ecommerce/customerorders';
-  buyProductAPI = 'http://10.117.189.62:8065/ecommerce/products';
-  searchTransactionAPI = 'http://10.117.189.62:8087/bank/transactions';
-  sendOTPAPI = 'http://10.117.189.62:8065/ecommerce/otp';
+  loginAPI = 'http://10.117.189.28:8087/benchresources/managers/login';
+  benchEmployeeListAPI = 'http://10.117.189.62:8087/bank/customers/login';
   constructor(private http: HttpClient) {
   }
 
@@ -25,19 +20,6 @@ export class PolicyService {
       'Content-Type': 'application/json'
     })
   };
-
-  /*
-  * @param data
-  * Registration API
-  * POST Method
-  * Type Object
-  */
-  postUsersData(data): Observable<any> {
-    this.showAlert = {};
-    return this.http.post(this.registrationAPI, data, this.httpOptions).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
 
   /*
   * @param data
@@ -58,9 +40,9 @@ export class PolicyService {
    * GET Method
    * Type String
    */
-  showProducts(productName: string): Observable<any> {
+  showBenchEmployees(productName: string): Observable<any> {
     this.showAlert = {};
-    return this.http.get(this.searchAPI + '?productName=' + productName).pipe(
+    return this.http.get(this.benchEmployeeListAPI + '?productName=' + productName).pipe(
       catchError(this.errorHandler.bind(this))
     );
   }

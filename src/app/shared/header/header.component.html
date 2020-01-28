@@ -7,12 +7,12 @@
  
     <form class="form-inline my-2 my-lg-0">
         <ul class="nav navbar-nav ml-md--auto float-right">
-            <li class="dropdown" *ngIf="userDetails && userDetails?.customerName">
+            <li class="dropdown" *ngIf="userDetails && userDetails?.name">
 
                 <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown"
                     aria-expanded="false">
                     <strong class="text-success">Welcome <span
-                            class="text-white">{{userDetails?.customerName}}</span></strong>
+                            class="text-white">{{userDetails?.name}}</span></strong>
                     <b class="caret"></b>
                 </a>
 

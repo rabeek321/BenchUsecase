@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   validateLogin() {
     if (this.loginForm.valid) {
       const postObj = {
-        customerEmail: this.loginForm.value.username,
+        sapId: this.loginForm.value.username,
         password: this.loginForm.value.password
       };
       // tslint:disable-next-line: deprecation
@@ -41,13 +41,11 @@ export class LoginComponent implements OnInit {
         console.log(user);
         if (user) {
           const userDetails = {
-            username: this.loginForm.value.customerEmail,
-            customerName: user.customerName,
-            userId: user.customerID,
-            loginType: 'shopping'
+            name: user.name,
+            sapId: user.sapId
           };
           sessionStorage.setItem('currentUser', JSON.stringify(userDetails));
-          this.router.navigate(['search']);
+          this.router.navigate(['dashboard']);
           this.loader = false;
         }
       }, error => {
