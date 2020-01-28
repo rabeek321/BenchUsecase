@@ -11,14 +11,70 @@ import { MessageService } from 'primeng/api';
 })
 export class DashboardComponent implements OnInit {
   loader:boolean = false;
+  display:boolean = false;
+  empAnalysisList;
   empList;
+  data: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private policyService: PolicyService,
     private toastService: MessageService,
     private elementRef: ElementRef
-  ) { }
+  ) { 
+    this.data = {
+      labels: ['A','B','C'],
+      datasets: [
+          {
+              data: [300, 50, 100],
+              backgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+              ],
+              hoverBackgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+              ]
+          }]    
+      };
+  }
+  getOverAllTrends(sapId, skillId) {
+    this.policyService.getEmployeeStatistics(sapId,skillId).subscribe(res => {
+      console.log(res);
+      this.empAnalysisList = res.policyTrendList;
+      const percentage: any[] = [];
+      const label: any[] = [];
+      const count: any[] = [];
+      this.empAnalysisList.forEach(element => {
+        percentage.push(element.percentage);
+        label.push(element.policyName + '(' + element.count + ')');
+        count.push(element.count);
+      });
+      // console.log(this.trendAnalysisList)
+      this.data = {
+        labels: label,
+        datasets: [
+          {
+            data: percentage,
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56'
+            ],
+            hoverBackgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56'
+            ]
+          }]
+      };
+    },
+      error => {
+        this.loader = false;
+      });
+  }
 
   getBenchResources() {
     const user = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -34,6 +90,10 @@ export class DashboardComponent implements OnInit {
       error => {
         this.loader = false;
       });
+  }
+
+  viewEmpStatistics(sapID:number) {
+    this.display = true;
   }
 
   ngOnInit() {

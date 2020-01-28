@@ -10,6 +10,7 @@ export class PolicyService {
   showAlert = {};
   loginAPI = 'http://10.117.189.28:8087/benchresources/managers/login';
   benchEmployeeListAPI = 'http://10.117.189.28:8087/benchresources/managers';
+  employeeStatisticsAPI = 'http://10.117.189.28:8087/benchresources/managers';
   constructor(private http: HttpClient) {
   }
 
@@ -43,6 +44,19 @@ export class PolicyService {
   showBenchEmployees(sapId: number): Observable<any> {
     this.showAlert = {};
     return this.http.get(this.benchEmployeeListAPI + '/' + sapId + '/employees').pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
+
+  /*
+   * @param productName
+   * Search E-Commerce Products
+   * GET Method
+   * Type String
+   */
+   getEmployeeStatistics(sapId:number,skillId:string): Observable<any> {
+    this.showAlert = {};
+    return this.http.get(this.employeeStatisticsAPI).pipe(
       catchError(this.errorHandler.bind(this))
     );
   }
