@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       // tslint:disable-next-line: deprecation
       this.policyService.checkLogin(postObj).subscribe(user => {
         console.log(user);
-        if (user.loginType === 'shopping') {
+        if (user) {
           const userDetails = {
             username: this.loginForm.value.customerEmail,
             customerName: user.customerName,
@@ -50,18 +50,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['search']);
           this.loader = false;
         }
-        if (user.loginType === 'credit') {
-          const userDetails = {
-            username: this.loginForm.value.customerEmail,
-            customerName: user.customerName,
-            userId: user.customerID,
-            creditCardId: user.creditCardId,
-            loginType: 'credit'
-          };
-          sessionStorage.setItem('currentUser', JSON.stringify(userDetails));
-          this.router.navigate(['transaction']);
-          this.loader = false;
-        }
+      }, error => {
+        this.loader = false;
       });
     }
   }
@@ -72,7 +62,7 @@ export class LoginComponent implements OnInit {
     if (!this.policyService.validUser()) {
       this.router.navigate(['/login']);
     } else {
-      this.router.navigate(['/transaction']);
+      this.router.navigate(['/dashboard']);
     }
     this.createForm();
   }
