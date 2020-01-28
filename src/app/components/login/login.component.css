@@ -1,0 +1,57 @@
+#cover {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    } 
+
+    #cover-caption {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    }
+
+    .card {
+    /* background-color: rgba(0,0,0,0.5) !important; */
+    background-color: #343a40 !important;
+    opacity: 90%;
+    }
+    
+    .card-header h3 {
+    color: white;
+     }
+     
+    input:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+    }
+
+    .login_btn{
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+    }
+    
+    .login_btn:hover{
+    color: black;
+    background-color: white;
+    }
+    
+    .links{
+    color: white;
+    }
+    
+    .links a{
+    margin-left: 4px;
+    }
+    .error{
+        font-size: 80%;
+        font-style: italic;
+        color:#FFC312;
+        padding: 2px;
+      }
+      .required {
+          color: red;
+          padding: 2px;
+          font-size: 100%;
+      }
