@@ -9,7 +9,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class PolicyService {
   showAlert = {};
   loginAPI = 'http://10.117.189.28:8087/benchresources/managers/login';
-  benchEmployeeListAPI = 'http://10.117.189.62:8087/bank/customers/login';
+  benchEmployeeListAPI = 'http://10.117.189.28:8087/benchresources/managers';
   constructor(private http: HttpClient) {
   }
 
@@ -40,59 +40,9 @@ export class PolicyService {
    * GET Method
    * Type String
    */
-  showBenchEmployees(productName: string): Observable<any> {
+  showBenchEmployees(sapId: number): Observable<any> {
     this.showAlert = {};
-    return this.http.get(this.benchEmployeeListAPI + '?productName=' + productName).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
-
-  /*
-    * @param customerId
-    * Show My Order History
-    * GET Method
-    * Type Number
-    */
-  showMyOrders(customerId: number): Observable<any> {
-    this.showAlert = {};
-    return this.http.get(this.myOrdersAPI + '/' + customerId).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
-
-  /*
-    * @param data
-    * Product BUY NOW Api call
-    * POST Method
-    * Type Object
-    */
-  buyProducts(data): Observable<any> {
-    this.showAlert = {};
-    return this.http.post(this.buyProductAPI, data, this.httpOptions).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
-
-  /*
-    * @param creditId,month,year
-    * Search Transactions based on month and year
-    * GET Method
-    */
-  postsearchData(creditId: number, month: number, year: number): Observable<any> {
-    this.showAlert = {};
-    return this.http.get(this.searchTransactionAPI + '?creditCardId=' + creditId + '&month=' + month + '&year=' + year).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
-
-  /*
-   * @param data:object
-   * Send OTP API Call
-   * POST Method
-   */
-  sendOTP(data): Observable<any> {
-    this.showAlert = {};
-    return this.http.post(this.sendOTPAPI, data, this.httpOptions).pipe(
+    return this.http.get(this.benchEmployeeListAPI + '/' + sapId + '/employees').pipe(
       catchError(this.errorHandler.bind(this))
     );
   }

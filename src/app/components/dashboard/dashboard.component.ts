@@ -10,7 +10,8 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  loader: false;
+  loader:boolean = false;
+  empList;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -18,6 +19,22 @@ export class DashboardComponent implements OnInit {
     private toastService: MessageService,
     private elementRef: ElementRef
   ) { }
+
+  getBenchResources() {
+    const user = JSON.parse(sessionStorage.getItem('currentUser'));
+    const customerId = user ? user.sapId : null;
+    this.policyService.showAlert = {};
+    this.loader = true;
+    // const user = JSON.parse(sessionStorage.getItem('currentUser')).customerId;
+    this.policyService.showBenchEmployees(customerId).subscribe(res => {
+      console.log(res);
+      this.loader = false;
+      this.empList = res;
+    },
+      error => {
+        this.loader = false;
+      });
+  }
 
   ngOnInit() {
     // tslint:disable-next-line: max-line-length
@@ -28,6 +45,7 @@ export class DashboardComponent implements OnInit {
     } else {
       this.router.navigate(['/dashboard']);
     }
+    this.getBenchResources();
   }
 
 }
