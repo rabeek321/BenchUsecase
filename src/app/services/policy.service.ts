@@ -48,6 +48,34 @@ export class PolicyService {
   }
 
   /*
+   * @param productName
+   * Search E-Commerce Products
+   * GET Method
+   * Type String
+   */
+  skillList(sapId: number): Observable<any> {
+    this.showAlert = {};
+    return this.http.get(this.benchEmployeeListAPI + '/' + sapId + '/employees').pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
+
+
+  
+  /*
+   * @param productName
+   * Search E-Commerce Products
+   * GET Method
+   * Type String
+   */
+  resourceChart(skill:string): Observable<any> {
+    this.showAlert = {};
+    return this.http.get(this.benchEmployeeListAPI + '?' + 'skillName=' + skill).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
+
+  /*
    * @param error
    * Error Handling
    */

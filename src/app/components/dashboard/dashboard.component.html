@@ -5,9 +5,8 @@ margin-bottom: 5%;">
         <div class="col-md-12">
             <h3 class="mb-4">Employee List</h3>
         </div>
-        <div class="chartModule m-5">
-            <p-chart type="pie" [data]="data"></p-chart>               
-        </div>
+        <app-dashboard-chart></app-dashboard-chart>
+       
 
         <p-table [value]="empList">
             <ng-template pTemplate="header">

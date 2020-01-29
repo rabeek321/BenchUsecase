@@ -6,9 +6,10 @@ import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../../shared/shared.module';
 import { PrimengModule } from '../../shared/primeng/primeng.module';
 import { MessageService } from 'primeng/api';
+import { DashboardChartComponent } from './dashboard-chart/dashboard-chart.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, DashboardChartComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

@@ -10,7 +10,7 @@ import { MessageSubscriptionService } from '../app/services/message-subscription
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent    
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,38 @@
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <div class="row bg-white p-5">
+                <form class="">
+                    <div class="col-12 m-3">
+                        <label class="sr-only" for="inlineFormInputName2">Experience</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>Choose...</option>
+                            <option value="freshers">Freshers</option>
+                            <option value="experience">Professional Experience</option>
+                        </select>
+                    </div>
+                    <div class="col-12 m-3">
+                        <label class="sr-only" for="inlineFormInputGroupUsername2">Skills</label>
+                        <div class="">
+                            <select id="inputState" class="form-control">
+                                <option selected>Choose...</option>
+                                <option value="freshers">UI</option>
+                                <option value=".net">.NET</option>
+                                <option value="java">JAVA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="col-6 pull-right ">
+            <div class=" chartModule float-right">
+                <p-chart type="pie" [data]="data" width="" height="300" class="p-3" (onDataSelect)="selectData($event)"></p-chart>
+            </div>
+        </div>
+    </div>
+</section>

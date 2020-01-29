@@ -11,7 +11,6 @@ import { MessageService } from 'primeng/api';
 })
 export class DashboardComponent implements OnInit {
 
-  data: any;
   loader: boolean = false;
   empList;
   constructor(
@@ -40,23 +39,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data = {
-      labels: ['A','B','C'],
-      datasets: [
-          {
-              data: [300, 50, 100],
-              backgroundColor: [
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56"
-              ],
-              hoverBackgroundColor: [
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56"
-              ]
-          }]    
-      };
+   
 
     // tslint:disable-next-line: max-line-length
     this.elementRef.nativeElement.ownerDocument.body.style.background = 'linear-gradient(to right bottom, #cfcbc9 ,#ff6200,#ff6200,#cfcbc9) fixed center';
