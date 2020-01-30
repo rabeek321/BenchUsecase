@@ -9,7 +9,12 @@ import { retry, catchError } from 'rxjs/operators';
 export class PolicyService {
   showAlert = {};
   loginAPI = 'http://10.117.189.28:8087/benchresources/managers/login';
-  benchEmployeeListAPI = 'http://10.117.189.62:8087/bank/customers/login';
+  benchEmployeeListAPI = 'http://10.117.189.28:8087/benchresources/managers/employees';
+  resourceList = 'http://10.117.189.28:8087/benchresources/managers';
+  getEmployeeSkillsAPI = 'http://10.117.189.28:8087/benchresources/managers/getSkillBySapId';
+  getAllSkillsAPI = 'http://10.117.189.28:8087/benchresources/skills';
+  getSelectedSkill = 'http://10.117.189.28:8087/benchresources/managers/getData';
+
   constructor(private http: HttpClient) {
   }
 
@@ -35,68 +40,68 @@ export class PolicyService {
   }
 
   /*
-   * @param productName
-   * Search E-Commerce Products
+   * @param sapId
+   * Show list of bench employees under specific resource manager
+   * Post Method
+   * Type object
+   */
+  showBenchEmployees(data): Observable<any> {
+    this.showAlert = {};
+    return this.http.post(this.benchEmployeeListAPI, data, this.httpOptions).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
+
+  /*
+ * @param sapId
+ * Get Employee skills for specific employee
+ * GET Method
+ * Type Number
+ */
+  getEmployeeSkills(sapId: number): Observable<any> {
+    this.showAlert = {};
+    return this.http.get(this.getEmployeeSkillsAPI + '/' + sapId).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
+
+  /*
+   * @param Skill Id
+   * Get Skill list displaying in chart
    * GET Method
-   * Type String
+   * Type Number
    */
-  showBenchEmployees(productName: string): Observable<any> {
+  resourceChart(skill: number): Observable<any> {
     this.showAlert = {};
-    return this.http.get(this.benchEmployeeListAPI + '?productName=' + productName).pipe(
+    return this.http.get(this.resourceList + '?' + 'skillId=' + skill).pipe(
       catchError(this.errorHandler.bind(this))
     );
   }
-
   /*
-    * @param customerId
-    * Show My Order History
-    * GET Method
-    * Type Number
-    */
-  showMyOrders(customerId: number): Observable<any> {
-    this.showAlert = {};
-    return this.http.get(this.myOrdersAPI + '/' + customerId).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
-
-  /*
-    * @param data
-    * Product BUY NOW Api call
-    * POST Method
-    * Type Object
-    */
-  buyProducts(data): Observable<any> {
-    this.showAlert = {};
-    return this.http.post(this.buyProductAPI, data, this.httpOptions).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
-
-  /*
-    * @param creditId,month,year
-    * Search Transactions based on month and year
-    * GET Method
-    */
-  postsearchData(creditId: number, month: number, year: number): Observable<any> {
-    this.showAlert = {};
-    return this.http.get(this.searchTransactionAPI + '?creditCardId=' + creditId + '&month=' + month + '&year=' + year).pipe(
-      catchError(this.errorHandler.bind(this))
-    );
-  }
-
-  /*
-   * @param data:object
-   * Send OTP API Call
-   * POST Method
+   * @param no param
+   * Get all dynamic skills
+   * GET Method
+   * Type array of objects
    */
-  sendOTP(data): Observable<any> {
+  getAllSkills(): Observable<any> {
     this.showAlert = {};
-    return this.http.post(this.sendOTPAPI, data, this.httpOptions).pipe(
+    return this.http.get(this.getAllSkillsAPI).pipe(
       catchError(this.errorHandler.bind(this))
     );
   }
 
+  /*
+  * @param Skill id and Sap id
+  * Get skill details for specific employee
+  * GET Method
+  * Type Object
+  */
+  getSelectedSkillRecords(data): Observable<any> {
+    this.showAlert = {};
+    return this.http.get(this.getSelectedSkill + '/' + data.skillId + '/' + data.sapId, this.httpOptions).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
   /*
    * @param error
    * Error Handling

@@ -28,11 +28,9 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-  viewOrders() {
-    this.router.navigate(['/myorders']);
-  }
+  
   goToDashboard() {
-    this.router.navigate(['/search']);
+    this.router.navigate(['/dashboard']);
   }
 
   /* logout */

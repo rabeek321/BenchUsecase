@@ -4,7 +4,14 @@
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
- 
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" *ngIf="userDetails">
+                <a href="javascript:void(0);" class="nav-link text-white" (click)="goToDashboard();">Dashboard
+                </a>
+            </li>
+        </ul>
+    </div>
     <form class="form-inline my-2 my-lg-0">
         <ul class="nav navbar-nav ml-md--auto float-right">
             <li class="dropdown" *ngIf="userDetails && userDetails?.name">
