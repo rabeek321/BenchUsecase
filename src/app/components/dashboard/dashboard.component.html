@@ -1,4 +1,41 @@
-<div class="container" style="margin-top: 7%;
+<section class="container-fluid" style="margin-top: 7%;
+margin-bottom: 5%;">
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+            <form class="">
+                <div class="col-12 m-3">
+                    <label class="sr-only" for="inlineFormInputGroupUsername2">Skills</label>
+                    <div class="">
+                        <select id="inputState" class="form-control" #skill required>
+                            <option value="">Select Skills</option>
+                            <option *ngFor="let skill of skillsList" value="{{skill.skillId}}">{{skill.skillName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 m-3">
+                    <button type="submit" class="btn btn-primary mb-2" (click)="skillSubmit(skill)">Submit</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6" *ngIf="overallChart">
+      <div class="card">
+        <div class="card-body">
+            <p-chart type="pie" [data]="dashboarddata" width="" height="300" class="p-3" (onDataSelect)="selectData($event)"></p-chart>
+            <!-- <div class="col-6 pull-right">
+                <div class=" chartModule float-right">
+                    
+                </div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container-fluid" style="margin-top: 7%;
 margin-bottom: 5%;">
     <!-- Grid row -->
     <div class="row" *ngIf="empList?.length">
@@ -31,4 +68,29 @@ margin-bottom: 5%;">
             </ng-template>
         </p-table>
     </div>
+    <section class="container-fluid" style="margin-top: 7%;
+margin-bottom: 5%;">
+<p-dialog header="Employee Skill Score" [(visible)]="display" [modal]="true" [style]="{width: '90vw'}" [maximizable]="true" [baseZIndex]="10000"
+[draggable]="false" [resizable]="false">
+     <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+                <p-chart type="doughnut" [data]="data" (onDataSelect)="selectData($event)"></p-chart>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6" *ngIf="skillDetailsChart">
+          <div class="card">
+            <div class="card-body">
+                <p-chart type="bar" [data]="skillChartData"></p-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+</p-dialog>
+
+</section>
+    
 </div>
+

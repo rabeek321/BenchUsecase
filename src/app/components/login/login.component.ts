@@ -20,9 +20,16 @@ export class LoginComponent implements OnInit {
     private elementRef: ElementRef
   ) { }
 
-  /*  Access to Login form fields */
+  /*
+  * @param
+  * Get login form controll access
+  */
   get login() { return this.loginForm.controls; }
 
+  /*
+   * @param create form
+   * Create form group object for login form
+   */
   createForm() {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -30,6 +37,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /*
+   * @param Login Validate
+   * Validate login form with credentials
+   * @input sapId and password
+   */
   validateLogin() {
     if (this.loginForm.valid) {
       const postObj = {
