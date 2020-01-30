@@ -10,12 +10,14 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
   dashboarddata: any;
   data: any;
   skillChartData: any;
   loader = false;
   display = false;
   overallChart = false;
+
   empList;
   trendAnalysisList;
   skillsList;
@@ -32,6 +34,7 @@ export class DashboardComponent implements OnInit {
     private policyService: PolicyService,
     private toastService: MessageService,
     private elementRef: ElementRef,
+
   ) { }
 /*
    * @param list out bench resources
@@ -205,6 +208,24 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
+    this.data = {
+      labels: ['A','B','C'],
+      datasets: [
+          {
+              data: [300, 50, 100],
+              backgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+              ],
+              hoverBackgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+              ]
+          }]    
+      };
+
     // tslint:disable-next-line: max-line-length
     this.elementRef.nativeElement.ownerDocument.body.style.background = 'linear-gradient(to right bottom, #cfcbc9 ,#ff6200,#ff6200,#cfcbc9) fixed center';
     /* Check whether login/not */
